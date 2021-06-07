@@ -1,11 +1,15 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const fileUpload = require('express-fileupload')
 const PORT = 3000
 const app = express()
 
-app.use(express.json)
+app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use(require('routes/index.js'))
+app.use(fileUpload())
+
+
+app.use(require('./routes/index'))
 
 async function start () {
  try {
